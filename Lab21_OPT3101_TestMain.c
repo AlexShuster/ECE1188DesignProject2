@@ -557,11 +557,6 @@ void main(void){ // wallFollow wall following implementation
   UART0_Init();
   Motor_Stop(); // initialize and stop
 
-  int goStop;
-  while (goStop == null)
-  {
-      goStop = UART0_InChar();
-  }
   Mode = 1;
   I2CB1_Init(30); // baud rate = 12MHz/30=400kHz
   Init();
@@ -594,11 +589,12 @@ void main(void){ // wallFollow wall following implementation
   // Pause();
   EnableInterrupts();
   while(1){
-//    if(Bump_Read()){ // collision
-//      Mode = 0;
-//      Motor_Stop();
-//      Pause();
-//    }
+    if(Bump_Read() != 0x3F){ // collision
+      Mode = 0;
+      Motor_Stop();
+      Clock_Delay1ms(1000);
+      Mode = 1;
+    }
     if(TxChannel <= 2){ // 0,1,2 means new data
       if(TxChannel==0){
         if(Amplitudes[0] > 1000){
