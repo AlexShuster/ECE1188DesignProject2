@@ -56,22 +56,22 @@ void getDistances(uint32_t *distanceBuf)
 {
     if(TxChannel <= 2){ // 0,1,2 means new data
       if(TxChannel==0){
-        if(Distances[0] < 1000){
+        if(Distances[0] < 1500){
             distanceBuf[0] = Distances[0];
         }else{
-            distanceBuf[0] = 1000;
+            distanceBuf[0] = 1500;
         }
       }else if(TxChannel==1){
-        if(Distances[1] < 1000){
+        if(Distances[1] < 1500){
             distanceBuf[1] = Distances[1];
         }else{
-            distanceBuf[1] = 1000;
+            distanceBuf[1] = 1500;
         }
       }else {
-        if(Distances[2] < 1000){
+        if(Distances[2] < 1500){
             distanceBuf[2] = Distances[2];
         }else{
-            distanceBuf[2] = 1000;
+            distanceBuf[2] = 1500;
         }
       }
       TxChannel = 3; // 3 means no data
