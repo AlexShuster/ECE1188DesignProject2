@@ -56,22 +56,22 @@ void getDistances(uint32_t *distanceBuf)
 {
     if(TxChannel <= 2){ // 0,1,2 means new data
       if(TxChannel==0){
-        if(Amplitudes[0] > 1000){
-            distanceBuf[0] = FilteredDistances[0] = Left(LPF_Calc(Distances[0]));
+        if(Distances[0] < 1000){
+            distanceBuf[0] = Distances[0];
         }else{
-            distanceBuf[0] = FilteredDistances[0] = 500;
+            distanceBuf[0] = 1000;
         }
       }else if(TxChannel==1){
-        if(Amplitudes[1] > 1000){
-            distanceBuf[1] = FilteredDistances[1] = LPF_Calc2(Distances[1]);
+        if(Distances[1] < 1000){
+            distanceBuf[1] = Distances[1];
         }else{
-            distanceBuf[1] = FilteredDistances[1] = 500;
+            distanceBuf[1] = 1000;
         }
       }else {
-        if(Amplitudes[2] > 1000){
-            distanceBuf[2] = FilteredDistances[2] = Right(LPF_Calc3(Distances[2]));
+        if(Distances[2] < 1000){
+            distanceBuf[2] = Distances[2];
         }else{
-            distanceBuf[2] = FilteredDistances[2] = 500;
+            distanceBuf[2] = 1000;
         }
       }
       TxChannel = 3; // 3 means no data
